@@ -1,0 +1,10 @@
+@charset "UTF-8";
+h1{
+    margin: 0;
+}
+table{
+    width: 100%;
+    background-color: greenyellow;
+    border-bottom-style: solid;
+    border-bottom-color: #000;
+}
