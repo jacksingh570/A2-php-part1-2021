@@ -36,7 +36,7 @@
                         <input name="artistAlbum" id="artistAlbum" required value="<?php echo $artist['artistAlbum'];?>"/>
                     </fieldset>
                     <fieldset>
-                        <label for="artistSong" class="col-2">Artist Album</label>
+                        <label for="artistSong" class="col-2">Artist Song</label>
                         <input name="artistSong" id="artistSong" required value="<?php echo $artist['artistSong'];?>"/>
                     </fieldset>
                     <input type="hidden" name="artistId" id="artistId" value="<?php echo $artist['artistId'];?>"/>

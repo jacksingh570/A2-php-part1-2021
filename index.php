@@ -10,11 +10,16 @@
                 //retrieving inputs
                 $inputs = $cmd->fetchAll();
                 //PRINT STATEMENTS
-                echo '<table><thread><th>Artist</th><th>Album</th><th>Song</th></thread>';
+                echo '<main class="container"><table class="table table-striped table-light"><thread><th>Artist</th><th>Album</th><th>Song</th><th>Actions</th></thread>';
                 foreach ($inputs as $indInputs) {
-                    echo '<tr><td>' . $indInputs['artistName'] . '</td><td>' . $indInputs['albumName'] . '</td><td>' . $indInputs['songName'] . '</td></tr>';
+                    echo '<tr><td>' . $indInputs['artistName'] . '</td><td>' . $indInputs['artistAlbum'] . '</td><td>' . $indInputs['artistSong'] . '</td>
+                        <td><a href="edit.php?artistId=' . $indInputs['artistId'] .
+                        '" class="btn btn-secondary">Edit</a>
+                        <a href="delete.php?artistId=' . $indInputs['artistId'] . '" class="btn btn-danger" title="Delete"
+                        onclick="return confirmDelete();">Delete</a></td></tr>';
+
                 }
-                echo '</table>';
+                echo '</table></main>';
                 $db = null;
             }catch (exception $e){
                 header('error.php');
