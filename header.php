@@ -11,6 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Artists</a>
-            <a style="color: gray" class="nav-link" aria-current="page" href="edit.php">Add an artist</a>
+            <a style="color: gray"
+               fclass="nav-link" aria-current="page" href="edit.php">Add an artist</a>
         </div>
     </nav>
