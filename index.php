@@ -10,14 +10,27 @@
                 //retrieving inputs
                 $inputs = $cmd->fetchAll();
                 //PRINT STATEMENTS
-                echo '<main class="container"><table class="table table-striped table-light"><thread><th>Artist</th><th>Album</th><th>Song</th><th>Actions</th></thread>';
+                echo '<main class="container"><table class="table table-striped table-light"><thead><th>Artist</th><th>Album</th><th>Song</th><th>Link</th><th>Photo</th>';
+                if (!empty($_SESSION['username'])) {
+                    echo '<th>Actions</th>';
+                }
+                echo '</thead>';
                 foreach ($inputs as $indInputs) {
-                    echo '<tr><td>' . $indInputs['artistName'] . '</td><td>' . $indInputs['artistAlbum'] . '</td><td>' . $indInputs['artistSong'] . '</td>
-                        <td><a href="edit.php?artistId=' . $indInputs['artistId'] .
-                        '" class="btn btn-secondary">Edit</a>
-                        <a href="delete.php?artistId=' . $indInputs['artistId'] . '" class="btn btn-danger" title="Delete"
-                        onclick="return confirmDelete();">Delete</a></td></tr>';
-
+                    echo '<tr><td>' . $indInputs['artistName'] . '</td>'
+                        . '<td>' . $indInputs['artistAlbum'] . '</td>'
+                        . '<td>' . $indInputs['artistSong'] . '</td>'
+                        . '<td><a href="'  . $indInputs['artistLink'] . '">Link</a></td>'
+                        . '<td>';
+                        if (!empty($indInputs['photo'])) {
+                            echo '<img src="images/img-uploads/' . $indInputs['photo'] . '" alt="Artist Photo" class="thumbnail" />';
+                        }
+                        echo '</td>';
+                    if (!empty($_SESSION['username'])) {
+                        echo '<td><a href="edit.php?artistId=' . $indInputs['artistId'] . '" class="btn btn-secondary">Edit</a>'
+                            . '<a href="delete.php?artistId=' . $indInputs['artistId'] . '" class="btn btn-danger" title="Delete" onclick="return confirmDelete();">Delete</a>'
+                            . '</td>';
+                    }
+                    echo '</tr>';
                 }
                 echo '</table></main>';
                 $db = null;

@@ -7,25 +7,25 @@
     include 'db.php';
 
     $sql = "SELECT * FROM users WHERE username = :username";
-    $cmd = $db->preare($sql);
-    $cmd->bindaram(':username', $username, PDO::PARAM_STR, 100);
+    $cmd = $db->prepare($sql);
+    $cmd->bindParam(':username', $username, PDO::PARAM_STR, 100);
     $cmd->execute();
     $user = $cmd->fetch();
 
-        if(!$user){
+    if (!$user) {
+        $db = null;
+        header('location:login.php?invalid=true');
+    } else {
+        if (password_verify($password, $user['password'])) {
+            session_start();
+
+            $_SESSION['username'] = $username;
+
+            $db = null;
+            header('location:index.php');
+        } else {
             $db = null;
             header('location:login.php?invalid=true');
-        }else{
-            if(password_verify($password, $user['password'])){
-                session_start();
-
-                $_SESSION['username'] = $username;
-
-                $db = null;
-                header('location:items.php');
-            }else{
-                $db = null;
-                 header('location:login.php?invalid=true');
-            }
         }
+    }
 ?>

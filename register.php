@@ -16,7 +16,7 @@
         </fieldset>
         <fieldset class="from-group">
             <label for="confirm" class="col-2">Confirm Password:</label>
-            <input type="password" name="password" id="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeyup="return comparePasswords()"/>
+            <input type="password" name="confirm" id="confirm" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeyup="return comparePasswords()"/>
             <span id="passwordMsg"></span>
         </fieldset>
         <div class="offset-3">

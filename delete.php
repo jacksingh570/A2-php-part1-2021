@@ -2,24 +2,30 @@
     $pageTitle = "Delete";
     include 'header.php';
 
-    if(is_numeric($_GET['artistId'])){
-        $artistId = $_GET['artistId'];
-        try{
-            include 'db.php';
+    if (!empty($_SESSION['username'])) {
 
-            //execute sql delete command
-            $sql = "DELETE FROM artist WHERE artistId = :artistId";
-            $cmd = $db->prepare($sql);
-            $cmd->bindParam(':artistId', $artistId, PDO::PARAM_INT);
-            $cmd->execute();
-            $db = null;
-            echo '<main class="container">Item deleted</main>';
+        if (is_numeric($_GET['artistId'])) {
+            $artistId = $_GET['artistId'];
+            try {
+                include 'db.php';
 
-            header('location:index.php');
-        }catch (exception $e){
+                //execute sql delete command
+                $sql = "DELETE FROM artist WHERE artistId = :artistId";
+                $cmd = $db->prepare($sql);
+                $cmd->bindParam(':artistId', $artistId, PDO::PARAM_INT);
+                $cmd->execute();
+                $db = null;
+                echo '<main class="container">Item deleted</main>';
 
-            header('location:error.php');
+                header('location:index.php');
+            } catch (exception $e) {
+
+                header('location:error.php');
+            }
         }
+        include 'footer.php';
     }
-    include 'footer.php';
+    else {
+        header ('location:login.php');
+    }
     ?>

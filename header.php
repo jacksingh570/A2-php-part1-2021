@@ -11,7 +11,21 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Artists</a>
-            <a style="color: gray"
-               fclass="nav-link" aria-current="page" href="edit.php">Add an artist</a>
+            <?php
+                session_start();
+                if (!empty($_SESSION['username'])) {
+            ?>
+            <a style="color: gray" class="nav-link" href="edit.php">Add an artist</a>
+            <a style="color: gray" class="nav-link" href="#"><?php echo $_SESSION['username']; ?></a>
+            <a style="color: gray" class="nav-link" href="logout.php">Logout</a>
+            <?php
+                }
+                else {
+            ?>
+            <a style="color: gray" class="nav-link" href="register.php">Register</a>
+            <a style="color: gray" class="nav-link" href="login.php">Login</a>
+            <?php
+                }
+            ?>
         </div>
     </nav>
